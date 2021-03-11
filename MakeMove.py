@@ -78,6 +78,7 @@ class MakeMove():
         
     def StealKoalas(self):
         url = self.api_endpoint + "stealKoalas?"
+        #url = self.api_endpoint.replace('/train','') + "stealKoalas?"
         url += "playerId=" + str(self.playerId)
         url += "&gameId=" + str(self.gameId)
         
@@ -105,6 +106,8 @@ class MakeMove():
         return self.ReturnMatrixAndData(data)
         
     def ReturnMatrixAndData(self, data):
+        if 'map' not in data:
+            print(data)
         tiles = data['map']['tiles']
         
         matrix = [[0 for x in range(9)] for y in range(27)]
@@ -137,10 +140,10 @@ class MakeMove():
                     matrix[i][j] = 'f'
                     
         player1 = data['player1']
-        matrix[player1['x']][player1['y']] = '0'
+        matrix[player1['x']][player1['y']] = '1'
         
         player2 = data['player2']
-        matrix[player2['x']][player2['y']] = '1'
+        matrix[player2['x']][player2['y']] = '2'
         
         return data, matrix
 
@@ -157,6 +160,7 @@ h - hole
 f - free a spot
 """
     
+'''
 #%%
 c = MakeMove(30)
 c.MakeGame()
@@ -195,6 +199,6 @@ d, matrix = c.Move('e', 1)
 
 d, matrix = c.Move('d', 1)
     
-    
+'''
     
     
