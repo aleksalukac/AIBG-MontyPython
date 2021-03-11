@@ -68,7 +68,7 @@ class MakeMove():
         url += "playerId=" + str(self.playerId)
         url += "&gameId=" + str(self.gameId)
         
-        r = requests.post(url = url)
+        r = requests.get(url = url)
         print(r.url)
         
         data = json.loads(r.text)
@@ -82,7 +82,7 @@ class MakeMove():
         url += "playerId=" + str(self.playerId)
         url += "&gameId=" + str(self.gameId)
         
-        r = requests.post(url = url)
+        r = requests.get(url = url)
         print(r.url)
         
         data = json.loads(r.text)
@@ -97,7 +97,7 @@ class MakeMove():
         url += "&&x=" + str(x)
         url += "&&y=" + str(y)
         
-        r = requests.post(url = url)
+        r = requests.get(url = url)
         print(r.url)
         
         data = json.loads(r.text)
