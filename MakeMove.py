@@ -13,8 +13,9 @@ import os
 
 class MakeMove():
     
-    def __init__(self, gameId = -1, playerId = 665337):
+    def __init__(self, name = 'MontyPython', gameId = -1, playerId = 665337):
         self.gameId = gameId
+        self.name = name
         self.playerId = playerId
         p = Path(__file__).with_name('api.txt')
        # p = Path(os.getcwd() + '\\').with_name('api.txt')
@@ -37,7 +38,7 @@ class MakeMove():
         matrix = []
         
         self.player = 0 
-        if(data['player2']['teamName'] == 'MontyPython'):
+        if(data['player2']['teamName'] == self.name):
             self.player = 1
         
         return self.player, self.ReturnMatrixAndData(data)
@@ -113,7 +114,7 @@ class MakeMove():
                 tile = tiles[i][j]
                 
                 if(tile['tileContent']['itemType'] == 'EMPTY'):
-                    if(tile['ownedByTeam'] == 'MontyPython'):
+                    if(tile['ownedByTeam'] == self.name):
                         matrix[i][j] = 'b1'
                     elif(tile['ownedByTeam'] == ''):
                         matrix[i][j] = '0'
