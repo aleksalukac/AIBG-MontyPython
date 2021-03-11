@@ -40,7 +40,7 @@ class MakeMove():
         if(data['player2']['teamName'] == 'MontyPython'):
             self.player = 1
         
-        return data, self.player, matrix
+        return self.player, self.ReturnMatrixAndData(data)
             
     def Move(self, direction, distance):
         '''data = {'playerId' : playerId,
@@ -142,7 +142,6 @@ class MakeMove():
         matrix[player2['x']][player2['y']] = '1'
         
         return data, matrix
-        
 
 """
 0 - empty
@@ -182,9 +181,18 @@ print(r.text)
 # %%
 
 c = MakeMove()
-_,player,_ = c.MakeGame()
-d, matrix = c.Move('s', 1)
+player,_ = c.MakeGame()
+d, matrix = c.Move('d', 1)
     
+# %%
+
+d, matrix = c.Move('e', 1)
+
+d, matrix = c.Move('d', 1)
+
+d, matrix = c.Move('e', 1)
+
+d, matrix = c.Move('d', 1)
     
     
     
