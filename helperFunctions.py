@@ -49,3 +49,21 @@ def can_steal_koalas(go,my_pos,opp_pos,player,d):
 
 def check_cell(pos,matrix):
 	return matrix[pos[0]][pos[1]] in ["0","e","k","kc","f"]
+
+def find_distances(go,matrix,my_pos):
+	dist=[[-1 for _ in range(9)] for _ in range(27)]
+	q=[0 for _ in range(27*9)]
+	ql=qr=0
+	dist[my_pos[0]][my_pos[1]]=0
+	q[qr]=my_pos
+	qr+=1
+	while ql<qr:
+		u=q[ql]
+		ql+=1
+		for i in range(6):
+			v=go[u][i]
+			if v!=None and dist[v[0]][v[1]]==-1 and check_cell(v,matrix):
+				dist[v[0]][v[1]]=dist[u[0]][u[1]]+1
+				q[qr]=v
+				qr+=1
+	return dist
