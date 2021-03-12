@@ -50,11 +50,16 @@ class MakeMove():
         self.api_endpoint += "train/"
         url = self.api_endpoint + "makeGame?"
         url += "playerId=" + str(self.playerId)
+<<<<<<< HEAD
         #url += "&gameId=" + str(self.gameId)
+=======
+>>>>>>> 69cb59dd4ac499660d1001d204f6c9fa277b140c
 
-        r = requests.get(url=url)
+        r = requests.get(url = url)
+        print(r.url)
 
         data = json.loads(r.text)
+        self.gameId = data['gameId']
         #print(r.text)
         
         self.gameId = data['gameId']
