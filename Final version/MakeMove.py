@@ -7,6 +7,7 @@ Created on Thu Mar 11 18:25:21 2021
 import requests 
 from pathlib import Path
 import json 
+import os
 
 # %%
 
