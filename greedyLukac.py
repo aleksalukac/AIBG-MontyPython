@@ -1,7 +1,7 @@
 from MakeMove import MakeMove
 from helperFunctions import make_graph,get_player_position,get_opponent_position,can_steal_koalas,check_cell
 
-Api=MakeMove('MontyPython 2',12345,665338)
+Api=MakeMove('MontyPython 2',677,665338)
 
 #player,(d,matrix)=Api.JoinGame()
 player,(d,matrix) = Api.MakeGame()
@@ -39,7 +39,6 @@ while True:
 
 	good_mv=(-1,-1)
 	good_mv2 = (-1,-1)
-	matrix
 	for i in range(6):
 		dist=1
 		dest=my_pos
@@ -64,7 +63,6 @@ while True:
 						print("****************IMA GM2*************")
 						
 					dist2+=1
-					
 			dist+=1
 	if good_mv[0]!=-1:
 		d,matrix=Api.Move(mv_str[good_mv[0]],good_mv[1])

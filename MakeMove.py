@@ -33,7 +33,7 @@ class MakeMove():
         data = json.loads(r.text)
         #print(r.text)
         
-        self.gameId = data['gameId']
+        #self.gameId = data['gameId']
         
         matrix = []
         
