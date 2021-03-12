@@ -45,6 +45,7 @@ while True:
 
 	else:
 		good_mv=(-1,-1)
+		good_mv2 = (-1,-1)
 		for i in range(6):
 			dist=1
 			dest=my_pos
@@ -54,9 +55,24 @@ while True:
 					break
 				if matrix[dest[0]][dest[1]] in ['f','kc']:
 					good_mv=(i,dist)
+				for j in range(6):
+					dist2=1
+					dest2=dest
+	 
+					while True:
+						dest2=go[dest2[0]][dest2[1]][j]
+						if dest2==None or (not check_cell(dest2,matrix)) or my_energy + 1<dist + dist2:
+							break
+						if matrix[dest2[0]][dest2[1]] in ['f','kc']:
+							good_mv2=(i,dist)
+							
+						dist2+=1
+
 				dist+=1
 		if good_mv[0]!=-1:
 			d,matrix=Api.Move(mv_str[good_mv[0]],good_mv[1])
+		elif good_mv2[0] != -1:
+			d,matrix = Api.Move(mv_str[good_mv2[0]], good_mv2[1])
 
 		else:
 			def dfs(u,was):

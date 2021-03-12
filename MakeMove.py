@@ -50,10 +50,6 @@ class MakeMove():
         self.api_endpoint += "train/"
         url = self.api_endpoint + "makeGame?"
         url += "playerId=" + str(self.playerId)
-<<<<<<< HEAD
-        #url += "&gameId=" + str(self.gameId)
-=======
->>>>>>> 69cb59dd4ac499660d1001d204f6c9fa277b140c
 
         r = requests.get(url = url)
         print(r.url)
@@ -137,7 +133,7 @@ class MakeMove():
     def ReturnMatrixAndData(self, data):
         if 'map' not in data:
             print(data)
-            return self.data,self.matrix
+            return data,self.matrix
         tiles = data['map']['tiles']
         
         matrix = [[0 for x in range(9)] for y in range(27)]
