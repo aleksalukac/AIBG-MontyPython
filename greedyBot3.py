@@ -61,7 +61,7 @@ while True:
 	 
 					while True:
 						dest2=go[dest2[0]][dest2[1]][j]
-						if dest2==None or (not check_cell(dest2,matrix)) or my_energy + 1<dist + dist2:
+						if dest2==None or (not check_cell(dest2,matrix)) or my_energy + 1 -5 <dist + dist2:
 							break
 						if matrix[dest2[0]][dest2[1]] in ['f','kc']:
 							good_mv2=(i,dist)
