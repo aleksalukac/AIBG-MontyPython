@@ -18,13 +18,12 @@ class MakeMove():
         self.name = name
         self.playerId = playerId
         p = Path(__file__).with_name('api.txt')
-       # p = Path(os.getcwd() + '\\').with_name('api.txt')
         
         with p.open('r') as f:
             self.api_endpoint = f.read()
             
-    def MakeGame(self):
-        url = self.api_endpoint + "makeGame?"
+    def JoinGame(self):
+        url = self.api_endpoint+"joinGame?"
         url += "playerId=" + str(self.playerId)
         
         r = requests.get(url = url)
@@ -42,10 +41,10 @@ class MakeMove():
             self.player = 1
         
         return self.player, self.ReturnMatrixAndData(data)
-    
-
-    def JoinGame(self):
-        url = self.api_endpoint+"joinGame?"
+        
+    def MakeGame(self):
+        self.api_endpoint += "train/"
+        url = self.api_endpoint + "makeGame?"
         url += "playerId=" + str(self.playerId)
         url += "&gameId=" + str(self.gameId)
 
@@ -63,7 +62,6 @@ class MakeMove():
             self.player = 1
         
         return self.player, self.ReturnMatrixAndData(data)
-        
             
     def Move(self, direction, distance):
         '''data = {'playerId' : playerId,
