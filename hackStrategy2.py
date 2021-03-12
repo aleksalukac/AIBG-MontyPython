@@ -1,7 +1,7 @@
 from MakeMove import MakeMove
 from helperFunctions import make_graph,get_player_position,get_opponent_position,can_steal_koalas,check_cell
 
-Api=MakeMove()
+Api=MakeMove('hackStrategy2',7777,665338)
 
 player,(d,matrix)=Api.MakeGame()
 player=str(player+1)

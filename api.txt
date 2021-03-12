@@ -1,1 +1,1 @@
-https://aibg2021.herokuapp.com/train/
+https://aibg2021.herokuapp.com/
