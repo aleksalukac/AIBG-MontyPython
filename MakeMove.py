@@ -25,6 +25,7 @@ class MakeMove():
     def JoinGame(self):
         url = self.api_endpoint+"joinGame?"
         url += "playerId=" + str(self.playerId)
+        url += "&gameId=" + str(self.gameId)
         
         r = requests.get(url = url)
         print(r.url)
@@ -46,11 +47,12 @@ class MakeMove():
         self.api_endpoint += "train/"
         url = self.api_endpoint + "makeGame?"
         url += "playerId=" + str(self.playerId)
-        url += "&gameId=" + str(self.gameId)
 
-        r = requests.get(url=url)
+        r = requests.get(url = url)
+        print(r.url)
 
         data = json.loads(r.text)
+        self.gameId = data['gameId']
         #print(r.text)
         
         #self.gameId = data['gameId']

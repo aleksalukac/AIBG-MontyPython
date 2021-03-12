@@ -3,7 +3,9 @@ from helperFunctions import make_graph,get_player_position,get_opponent_position
 
 Api=MakeMove('MontyPython 2',12345,665338)
 
-player,(d,matrix)=Api.JoinGame()
+#player,(d,matrix)=Api.JoinGame()
+player,(d,matrix) = Api.MakeGame()
+#matrix[0][1] = 'f'
 player=str(player+1)
 
 print(player)
@@ -20,6 +22,7 @@ score_of={
 turns_skipped=0
 
 while True:
+	#matrix[0][1] = 'f'
 	go=make_graph(matrix)
 	my_pos=get_player_position(matrix,player)
 	my_energy=d['player'+player]['energy']
@@ -30,12 +33,13 @@ while True:
 	if can_steal_koalas(go,my_pos,opp_pos,player,d):
 		print(d['player1']['x'],d['player1']['y'])
 		print(d['player2']['x'],d['player2']['y'])
-		if(d['player' + (3 - int(player))]['koalas'] >= 2):
-			d,matrix=Api.StealKoalas()
+		if(d['player' + str(3 - int(player))]['gatheredKoalas'] >= 2):
+			d,matrix = Api.StealKoalas()
 			continue
-	
+
 	good_mv=(-1,-1)
-    good_mv2 = (-1,-1)
+	good_mv2 = (-1,-1)
+	matrix
 	for i in range(6):
 		dist=1
 		dest=my_pos
@@ -45,20 +49,22 @@ while True:
 				break
 			if matrix[dest[0]][dest[1]] in ['f','kc']:
 				good_mv=(i,dist)
+				print("****************IMA GM1*************")
 
-				for j in range(6):
+			for j in range(6):
 				dist2=1
 				dest2=dest
  
 				while True:
-					dest2=go[dest2[0]][dest2[1]][i]
+					dest2=go[dest2[0]][dest2[1]][j]
 					if dest2==None or (not check_cell(dest2,matrix)) or my_energy + 1<dist + dist2:
 						break
 					if matrix[dest2[0]][dest2[1]] in ['f','kc']:
 						good_mv2=(i,dist)
-                     
+						print("****************IMA GM2*************")
+						
 					dist2+=1
-               
+					
 			dist+=1
 	if good_mv[0]!=-1:
 		d,matrix=Api.Move(mv_str[good_mv[0]],good_mv[1])
