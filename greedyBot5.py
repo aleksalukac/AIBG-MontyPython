@@ -1,11 +1,10 @@
 from MakeMove import MakeMove
 from helperFunctions import make_graph,get_player_position,get_opponent_position,can_steal_koalas,check_cell,find_distances
 
-Api=MakeMove('MontyPython',1234,665337)
-#Api=MakeMove()
+#Api=MakeMove('MontyPython',9999,665337)
+Api=MakeMove()
 
-#player,(d,matrix)=Api.MakeGame()
-player,(d,matrix)=Api.JoinGame()
+player,(d,matrix)=Api.MakeGame()
 other=str((1-player)+1)
 player=str(player+1)
 
@@ -145,7 +144,7 @@ while True:
 								if dist!=1:
 									matrix[pre[0]][pre[1]]='0'
 								matrix[dest[0]][dest[1]]=player
-								score=delta_score+rec_to_depth(dest,energy-dist+e_cnt,matrix)[0]
+								score=delta_score+0.9*rec_to_depth(dest,energy-dist+e_cnt,matrix)[0]
 								if score>=best_delta:
 									best_delta=score
 									best_mv=(i,dist)

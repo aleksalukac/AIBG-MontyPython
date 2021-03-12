@@ -61,7 +61,7 @@ def find_distances(go,matrix,my_pos):
 		u=q[ql]
 		ql+=1
 		for i in range(6):
-			v=go[u][i]
+			v=go[u[0]][u[1]][i]
 			if v!=None and dist[v[0]][v[1]]==-1 and check_cell(v,matrix):
 				dist[v[0]][v[1]]=dist[u[0]][u[1]]+1
 				q[qr]=v

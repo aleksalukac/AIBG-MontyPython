@@ -24,6 +24,27 @@ class MakeMove():
             self.api_endpoint = f.read()
             
     def MakeGame(self):
+        url = self.api_endpoint + "makeGame?"
+        url += "playerId=" + str(self.playerId)
+        
+        r = requests.get(url = url)
+        print(r.url)
+        
+        data = json.loads(r.text)
+        #print(r.text)
+        
+        self.gameId = data['gameId']
+        
+        matrix = []
+        
+        self.player = 0 
+        if(data['player2']['teamName'] == self.name):
+            self.player = 1
+        
+        return self.player, self.ReturnMatrixAndData(data)
+    
+
+    def JoinGame(self):
         url = self.api_endpoint+"joinGame?"
         url += "playerId=" + str(self.playerId)
         url += "&gameId=" + str(self.gameId)
@@ -43,26 +64,6 @@ class MakeMove():
         
         return self.player, self.ReturnMatrixAndData(data)
         
-        '''
-        url = self.api_endpoint + "makeGame?"
-        url += "playerId=" + str(self.playerId)
-        
-        r = requests.get(url = url)
-        print(r.url)
-        
-        data = json.loads(r.text)
-        #print(r.text)
-        
-        self.gameId = data['gameId']
-        
-        matrix = []
-        
-        self.player = 0 
-        if(data['player2']['teamName'] == self.name):
-            self.player = 1
-        
-        return self.player, self.ReturnMatrixAndData(data)
-        '''
             
     def Move(self, direction, distance):
         '''data = {'playerId' : playerId,
