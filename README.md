@@ -8,7 +8,7 @@ Team members:
 ## How to start
 
 - Final version is in directory Final version
-- Start script finalSolution.py in terminal with gameId
+- Start script finalSolution.py in terminal with GameId as parameter
 
 Example:
 > ">> C:\finalSolution.py 123" 
