@@ -1,7 +1,7 @@
 from MakeMove import MakeMove
 from helperFunctions import make_graph,get_player_position,get_opponent_position,can_steal_koalas,check_cell,find_distances
 
-Api=MakeMove('MontyPython',1234,665337)
+Api=MakeMove('MontyPython',677,665337)
 #Api=MakeMove()
 
 #player,(d,matrix)=Api.MakeGame()
@@ -88,6 +88,7 @@ while True:
 			else:
 				dist=find_distances(go,matrix,my_pos)
 				has_good_move=False
+				has_good_move_2=False
 				invalid_move=-1
 				for i in range(6):
 					dest=go[my_pos[0]][my_pos[1]][i]
@@ -104,6 +105,8 @@ while True:
 								lose_koalas=True
 						if (not lose_koalas) and good:
 							has_good_move=True
+						if good:
+							has_good_move_2=True
 
 				if has_good_move:
 					def koala_trap(u,matrix):
@@ -175,7 +178,7 @@ while True:
 							br=dest
 						elif br[0]==-1:
 							br=dest
-					if d['player'+player]['hasFreeASpot'] and cnt==1 and br[0]!=-1:
+					if d['player'+player]['hasFreeASpot'] and cnt==1 and br[0]!=-1 and (not has_good_move_2):
 						d,matrix=Api.FreeASpot(br[0],br[1])
 					elif turns_skipped<5:
 						turns_skipped+=1

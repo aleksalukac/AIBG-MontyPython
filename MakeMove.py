@@ -25,6 +25,7 @@ class MakeMove():
     def JoinGame(self):
         url = self.api_endpoint+"joinGame?"
         url += "playerId=" + str(self.playerId)
+        url += "&gameId=" + str(self.gameId)
         
         r = requests.get(url = url)
         print(r.url)
@@ -32,7 +33,7 @@ class MakeMove():
         data = json.loads(r.text)
         #print(r.text)
         
-        self.gameId = data['gameId']
+        #self.gameId = data['gameId']
         
         matrix = []
         
