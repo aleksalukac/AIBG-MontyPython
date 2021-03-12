@@ -1,11 +1,11 @@
 from MakeMove import MakeMove
 from helperFunctions import make_graph,get_player_position,get_opponent_position,can_steal_koalas,check_cell,find_distances
 
-Api=MakeMove('MontyPython',677,665337)
-#Api=MakeMove()
+#Api=MakeMove('MontyPython',677,665337)
+Api=MakeMove()
 
-#player,(d,matrix)=Api.MakeGame()
-player,(d,matrix)=Api.JoinGame()
+player,(d,matrix)=Api.MakeGame()
+#player,(d,matrix)=Api.JoinGame()
 other=str((1-player)+1)
 player=str(player+1)
 
@@ -108,7 +108,13 @@ while True:
 						if good:
 							has_good_move_2=True
 
-				if has_good_move:
+				cnt_blocked=0
+				for i in range(27):
+					for j in range(9):
+						if matrix[i][j]!='h' and (not check_cell((i,j),matrix)):
+							cnt_blocked+=1
+
+				if has_good_move or cnt_blocked<60:
 					def koala_trap(u,matrix):
 						cnt=0
 						bad=False

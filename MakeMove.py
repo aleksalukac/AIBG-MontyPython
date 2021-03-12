@@ -21,6 +21,9 @@ class MakeMove():
         
         with p.open('r') as f:
             self.api_endpoint = f.read()
+
+        self.data=None
+        self.matrix=None
             
     def JoinGame(self):
         url = self.api_endpoint+"joinGame?"
@@ -47,14 +50,14 @@ class MakeMove():
         self.api_endpoint += "train/"
         url = self.api_endpoint + "makeGame?"
         url += "playerId=" + str(self.playerId)
-        url += "&gameId=" + str(self.gameId)
+        #url += "&gameId=" + str(self.gameId)
 
         r = requests.get(url=url)
 
         data = json.loads(r.text)
         #print(r.text)
         
-        #self.gameId = data['gameId']
+        self.gameId = data['gameId']
         
         matrix = []
         
@@ -129,6 +132,7 @@ class MakeMove():
     def ReturnMatrixAndData(self, data):
         if 'map' not in data:
             print(data)
+            return self.data,self.matrix
         tiles = data['map']['tiles']
         
         matrix = [[0 for x in range(9)] for y in range(27)]
@@ -165,6 +169,9 @@ class MakeMove():
         
         player2 = data['player2']
         matrix[player2['x']][player2['y']] = '2'
+
+        self.data=data
+        self.matrix=matrix
         
         return data, matrix
 
